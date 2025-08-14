@@ -4,13 +4,34 @@ from hangman_structure import hangman_art
 # word answer to the hangman game (light)
 answer_list = ('l', 'i', 'g', 'h', 't')
 
-# user input guess
-guess = input("Guess Letter:")
+# keeps track of how many guesses are correct to words in answer
+tracker = [0, len(answer_list)]
 correct = None
+mistakes = 0
 
-for let in answer_list:
-    if guess == let:
-        correct = True
+# use while loop to keep user guessing inputs until all are correct
+while (tracker[0] != tracker[1]) or (mistakes == 7): 
 
-print(correct)
-print(hangman_art(0))
+    # user input guess
+    correct = None
+    guess = input("Guess Letter: ")
+
+    for let in answer_list:
+        if guess == let:  # need to add an 'and' here , and if guess letter has not already been found etc
+            correct = True
+
+    if (correct):
+        tracker[0] = tracker[0] + 1
+        print("SUCCESS!")
+    else:
+        print("FAILED")
+        mistakes+=1
+        print(hangman_art(mistakes))
+
+# Game results
+print(hangman_art(mistakes))
+
+if mistakes == 7:
+    print('You LOSE!')
+else:
+    print('You WIN!')
