@@ -10,7 +10,7 @@ correct = None
 mistakes = 0
 
 # use while loop to keep user guessing inputs until all are correct
-while (tracker[0] != tracker[1]) or (mistakes == 7): 
+while (tracker[0] != tracker[1]) and (mistakes < 7): 
 
     # user input guess
     correct = None
@@ -31,7 +31,10 @@ while (tracker[0] != tracker[1]) or (mistakes == 7):
 # Game results
 print(hangman_art(mistakes))
 
+print('=====GAME RESULTS=====')
 if mistakes == 7:
     print('You LOSE!')
+    print(f'The word was {"".join(answer_list)}')
 else:
     print('You WIN!')
+    print(f'The word was {"".join(answer_list)}')
